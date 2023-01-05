@@ -19,7 +19,6 @@ body {
   margin: 0;
   background: linear-gradient(to top left, #b4cbff, #fffbda);
   background-attachment: fixed;
-
 }
 
 a {
@@ -273,6 +272,18 @@ select::-ms-expand {
   font-size: 18px;
   cursor: pointer;
 
+}
+
+/*edit.php*/
+.edit_line {
+  font-size: 22px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.delete {
+  margin-top: 25px;
+  text-align: right;
 }
 
 /*study.php*/

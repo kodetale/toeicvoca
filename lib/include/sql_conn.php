@@ -1,3 +1,3 @@
 <?php 
-  $conn = mysqli_connect('localhost', 'toeicvoca', 'tv#753951', 'toeicvoca');
+  $conn = mysqli_connect('localhost', 'root', '123456', 'voca');
 ?>

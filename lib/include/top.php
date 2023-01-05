@@ -20,7 +20,7 @@
   if (isset($_SESSION['userkey'])) {
     echo "{$_SESSION['username']}님(･ᴗ･)";
 ?>
-  
+  <span><a href="edit.php">정보수정</a></span>
   <span onclick="logout()">로그아웃</span>
   
 <?php
