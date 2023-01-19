@@ -36,10 +36,16 @@ li {
 
 h1 {
   text-align: center;
+  margin-block-start: 25px;
 }
 
 h2 {
   text-align: center;
+}
+
+hr {
+  width: 250px;
+  color: black;
 }
 
 /*전체 적용*/
@@ -128,7 +134,7 @@ h2 {
     width: 160px;
   }
 
-  .wrap .form_wrap .form input[type=text], .wrap .form_wrap .form input[type=password] {
+  .wrap .form input[type=text], .wrap .form input[type=password] {
     width: 300px;
   }
 
@@ -198,7 +204,6 @@ select::-ms-expand {
   width: 180px;
   height: 35px;
   font-size: 15px;
-  padding: 5px 30px 5px 10px;
   border-radius: 4px;
   margin-top: 10px;
 }
@@ -234,7 +239,7 @@ select::-ms-expand {
   display: none;
 }
 
-.wrap .form_wrap input[type=text], .wrap .form_wrap input[type=password] {
+.wrap input[type=text], .wrap input[type=password] {
   border: 1px solid #d9d9d9;
   width: 350px;
   height: 50px;
@@ -293,6 +298,17 @@ select::-ms-expand {
   height: 1px;
 }
 
+.day {
+  text-align: center;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-bottom: 16px;
+  width: 300px;
+  background-color: #ff9b9d;
+  font-size: 18px;
+  border-radius: 3px;
+}
+
 #read {
   background-color: transparent; 
   border: none;
@@ -323,20 +339,41 @@ select::-ms-expand {
   color: white;
 }
 
-.wrap .q {
-  position: absolute;
-}
-
 .wrap .q > h3 {
-  position: absolute;
-  top: -180px;
-  left: -100px;
+  margin-block-start: 8px;
+  margin-block-end: 0px;
 }
 
 .wrap .voca {
   text-align: center;
   font-size: 35px;
   margin-bottom: 30px;
+}
+
+#study_wrap input[type=text] {
+  width: 200px;
+  height: 30px;
+  font-size: 14px;
+}
+
+#study_btn {
+  width: 80px;
+  height: 30px;
+}
+
+#answer {
+  margin-top: 26px;
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+.answer {
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.next_btn {
+  text-align: right;
 }
 
 /*result.php*/
@@ -370,11 +407,11 @@ table > td, tr {
 }
 
 .wrap .hide {
-  color: white; 
+  opacity: 0%; 
 }
 
 .wrap .reveal {
-  color: black; 
+  opacity: 100%; 
 }
 
 .heart {

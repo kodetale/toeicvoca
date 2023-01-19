@@ -5,7 +5,7 @@ $day = $_GET['day'];
 $q = $_GET['q'];
 $answer = $_GET['answer'];
 $userkey = $_GET['userkey'];
-$sql = "select * from day".$day." where q=".$q;
+$sql = "select * from quiz where day =".$day." and q=".$q;
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 
@@ -13,8 +13,8 @@ $row = mysqli_fetch_array($result);
     echo "o";
   }
   else {
-    $sql3 = "insert into wrong (userkey, day, q) value (".$userkey.", ".$day.", ".$q.")";
-    $result3 = mysqli_query($conn, $sql3);
+    $sql2 = "insert into wrong (userkey, day, q) value (".$userkey.", ".$day.", ".$q.")";
+    $result2 = mysqli_query($conn, $sql2);
     echo "x";
   }
 ?>

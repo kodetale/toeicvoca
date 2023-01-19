@@ -37,7 +37,7 @@
               if($i == $_GET['day']) {
                 $selected = " selected"; 
               }
-            $select_form .= '<option value="'.$i.'"'.$selected.'>DAY'.$i.'</option>';
+            $select_form .= '<option value="'.$i.'"'.$selected.'>DAY '.$i.'</option>';
             $i++;
           }
 
@@ -53,7 +53,7 @@
     $day = $_GET['day'];
     $page = $_GET['page'];
         
-    $sql = "select * from wrong left join day".$day." on wrong.q = day".$day.".q where userkey=".$_SESSION['userkey']. " and wrong.day=".$day;
+    $sql = "select * from wrong left join quiz on wrong.day = quiz.day and wrong.q = quiz.q where userkey=".$_SESSION['userkey']. " and wrong.day=".$day;
     $result = mysqli_query($conn, $sql);
     $row_num = mysqli_num_rows($result);
         
@@ -68,7 +68,7 @@
     if($block_end > $total_page) $block_end = $total_page;
     $start_num = ($page-1) * $list;
 
-    $sql2 = "select * from wrong left join day".$day." on wrong.q = day".$day.".q where userkey=".$_SESSION['userkey']. " and wrong.day=".$day
+    $sql2 = "select * from wrong left join quiz on wrong.day = quiz.day and wrong.q = quiz.q where userkey=".$_SESSION['userkey']. " and wrong.day=".$day
     ." limit ".$start_num.", ".$list;
     $result2 = mysqli_query($conn, $sql2);
     

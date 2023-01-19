@@ -19,34 +19,45 @@ setcookie("c_num", "", 0, "/");
 
   <div id="index_wrap" class="wrap">
     <div class="main">
-      <img src="logo.png" width="70%">
+      <img src="./lib/img/logo.png" width="70%">
         
         <?php
           if (isset($_SESSION['userkey'])) {
         ?>
-          
-          <form id="start" action="study.php" method="get">
+
+          <form id="start" action="option.php" method="post">
           
           <?php
             $i = 1; 
             $select_form = '<select name="day" class="select">';
             while($i <= 30){
-              $select_form .= '<option value="'.$i.'">DAY'.$i.'</option>';
+              $select_form .= '<option value="'.$i.'">DAY '.$i.'</option>';
               $i++;
             }
             $select_form .= '</select>';
             
             echo $select_form;
           ?>
-          
-            <input type="hidden" name="q" value=1>
-            <p><input type="submit" value="문제풀기" class="main_btn"></p>
+            <p><input type="submit" value="퀴즈풀기" class="main_btn"></p>
           </form>
       
+          <div>⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑</div>
+          
           <form action="wrong.php" method="GET">
             <input type="hidden" name="day" value=1>
             <input type="hidden" name="page" value=1>
             <p><input type="submit" value="오답노트" class="main_btn"></p>
+          </form>
+
+          <?php
+            include './lib/include/sql_conn.php';
+            $sql = "select * from wrong where userkey = ".$_SESSION['userkey'];
+            $result = mysqli_query($conn, $sql);
+            $row_num = mysqli_num_rows($result);
+          ?>
+          
+          <form action="wrongoption.php" method="POST" onsubmit="return wrong_check()">
+            <p><input type="submit" value="오답퀴즈" class="main_btn"></p>
           </form>
           
           <?php
@@ -64,6 +75,16 @@ setcookie("c_num", "", 0, "/");
   </div>
 
 <script type="text/javascript" src="./lib/js/logout.js"></script>
+<script>
+function wrong_check() {
+  
+  if(<?=$row_num?> == 0) {
+    alert("저장된 오답이 없습니다.");
+    return false;
+  }
+}
+
+</script>
 </body>
 
 </html>

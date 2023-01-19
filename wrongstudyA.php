@@ -16,42 +16,52 @@
   
 <?php
   include './lib/include/top.php';
-  $day = $_GET['day'];
-  $q = $_GET['q'];
-  $sql = "select * from day".$day." where q=".$q;
+  $w_q = $_GET['q'];
+  $sql = "select @ROWNUM:=@ROWNUM+1 AS w_q, q.* from ( SELECT @ROWNUM := 0) R, wrong w left join quiz q on w.day = q.day and w.q = q.q where userkey = ".$_SESSION['userkey'];
   $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_array($result);
+  $row_num = mysqli_num_rows($result);
 ?>
 
-<div id="index_wrap" class="wrap">
-  <div class="q"><h3><?=$row['q']?>/40</h3></div>
+<div id="study_wrap" class="wrap">
+  
+  <?php 
+    while($row = mysqli_fetch_array($result)) {
+      if($w_q === $row['w_q']) {
+        $day = $row['day'];
+        $q = $row['q'];
+        $voca = $row['voca'];
+  ?>
+  
   <div>
+  <div class="day">DAY <?=$row['day']?></div>
+  <div class="q"><h3><?=$w_q?>/<?=$row_num?></h3></div>
     <h1><?=$row['voca']?><button type="button" id="read"><img src="./lib/img/read.png" width="23px" height="18px"></button></h1>
     <ul style="margin-top:30px;">
 
       <?php
         $com =  mb_substr($row['answer'], 0, 2);
-        $sql2 = "select * from ".$row['category'];
+        $sql2 = "select answer from quiz where category ='".$row['category']."'";
         $result2 = mysqli_query($conn, $sql2);
-        $row_num = mysqli_num_rows($result2);
-              
-        while(true) {
-          $ex = [];
-          $temp = range(1, $row_num);
-          shuffle($temp);
-          $ex_num =  array_slice($temp, 0, 3);
-            for($i=0; $i<3; $i++) {
-              $sql3 = "select * from ".$row['category']." where id=".$ex_num[$i];
-              $result3 = mysqli_query($conn, $sql3);
-              $row3 = mysqli_fetch_array($result3);
-              $ex[] = $row3['word'];
-                if(mb_strpos($ex[$i], $com) !== false) {
-                  continue 2;
-                }
-            }
-            break;
+        $answer = [];
+        $ex = [];
+
+        while($row2 = mysqli_fetch_array($result2)) {
+          $answer[] = $row2['answer'];
         }
-              
+        
+        shuffle($answer);
+        
+        for($i=0; $i<sizeof($answer); $i++) {
+          if(mb_strpos($answer[$i], $com) !== false) {
+            continue 1;
+          } else {
+            $ex[] = $answer[$i];
+          }
+          if(sizeof($ex) == 3) {
+            break;
+          }
+        }
+
         $ex[] = $row['answer'];
         shuffle($ex);
             
@@ -69,6 +79,9 @@
     </ul>
       
     <?php
+        }
+      }
+
       $result-> close();
     ?>
       
@@ -79,7 +92,7 @@
 <script>
   const read = document.getElementById("read")
   read.addEventListener("click", e => {
-    speak('<?=$row['voca']?>')
+    speak('<?=$voca?>')
   })
 
   function speak(text) {
@@ -103,8 +116,8 @@
       url: "lib/correctAns.php",
       type: "GET",
       data: {
-        day: <?=$_GET['day']?>,
-        q: <?=$_GET['q']?>,
+        day: <?=$day?>,
+        q: <?=$q?>,
         answer : answer,
         userkey: <?=$_SESSION['userkey']?>
         }
@@ -119,19 +132,19 @@
         });
         document.getElementById(id + '_l').classList.toggle('o');
         setTimeout(function() {
-          if(<?=$row['q']?> == 40) {
-            location.href="result.php?day=<?=$_GET['day']?>";
+          if(<?=$w_q?> == <?=$row_num?>) {
+            location.href="wrongresult.php";
           } else {
-            location.href="study.php?day=<?=$_GET['day']?>&q=<?=$row['q']+1?>";
+            location.href="wrongstudyA.php?q=<?=$w_q+1?>";
           }
         }, 150);
       } else {
         document.getElementById(id + '_l').classList.toggle('x');
         setTimeout(function() {
-          if(<?=$row['q']?> == 40) {
-            location.href="result.php?day=<?=$_GET['day']?>";
+          if(<?=$w_q?> == <?=$row_num?>) {
+            location.href="wrongresult.php";
           } else {
-            location.href="study.php?day=<?=$_GET['day']?>&q=<?=$row['q']+1?>";
+            location.href="wrongstudyA.php?q=<?=$w_q+1?>";
           }
         }, 150);
       } 
