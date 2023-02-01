@@ -8,14 +8,17 @@
 
 <head>
   <link rel="stylesheet" href="./lib/css/style.css">
+  <link rel="stylesheet" href="./lib/css/modal.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="//code.jquery.com/jquery.min.js"></script>
+  <title>TOEIC VOCA - 오답노트</title>
 </head>
 
 <body>
 
   <?php
-    include './lib/include/top.php'
+    include './lib/include/top.php';
+    include './lib/include/modal.php';
   ?>
 
 <div id="index_wrap" class="wrap">
@@ -93,7 +96,7 @@
       <tr>
         <td id="voca<?=$id_num?>" onclick="speak(this.id)"><?=$row['voca']?></td>
         <td id="answer<?=$id_num?>" onclick="reveal(this.id)" class="hide"><?=$row['answer']?></td>
-        <td><form action="wrong_delete_process.php" method="post" onsubmit="if(!confirm('오답노트에서 삭제하시겠습니까?')){return false};">
+        <td><form id="form<?=$id_num?>" action="wrong_delete_process.php" method="post" onsubmit="if(!del_confirm(this.id)){return false}">
               <input type="hidden" name="userkey" value="<?=$_SESSION['userkey']?>">
               <input type="hidden" name="day" value="<?=$_GET['day']?>">
               <input type="hidden" name="q" value="<?=$row['q']?>">
@@ -137,6 +140,7 @@
 </div>
   
 <script type="text/javascript" src="./lib/js/logout.js"></script>
+<script type="text/javascript" src="./lib/js/alert.js"></script>
 <script type="text/javascript">
 
   function speak(id) {
@@ -157,6 +161,17 @@
   
   function reveal(id) {
     document.getElementById(id).classList.toggle('reveal');
+  }
+
+  function del_confirm(id) {
+    action_popup.confirm("정말 삭제하시겠습니까?", function (res) {
+      if (res) {
+        document.getElementById(id).submit();
+      }
+      else {
+        return false;
+      }
+    })
   }
 
 </script>

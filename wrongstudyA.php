@@ -8,14 +8,17 @@
 
 <head>
   <link rel="stylesheet" href="./lib/css/style.css">
+  <link rel="stylesheet" href="./lib/css/modal.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="//code.jquery.com/jquery.min.js"></script>
+  <title>TOEIC VOCA - 객관식 오답퀴즈</title>
 </head>
 
 <body>
   
 <?php
   include './lib/include/top.php';
+  include './lib/include/modal.php';
   $w_q = $_GET['q'];
   $sql = "select @ROWNUM:=@ROWNUM+1 AS w_q, q.* from ( SELECT @ROWNUM := 0) R, wrong w left join quiz q on w.day = q.day and w.q = q.q where userkey = ".$_SESSION['userkey'];
   $result = mysqli_query($conn, $sql);
@@ -89,6 +92,7 @@
 </div>
 
 <script type="text/javascript" src="./lib/js/logout.js"></script>
+<script type="text/javascript" src="./lib/js/alert.js"></script>
 <script>
   const read = document.getElementById("read")
   read.addEventListener("click", e => {

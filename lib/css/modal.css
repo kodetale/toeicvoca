@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'neodgm';
+  src: url('./neodgm.woff') format('woff');
+}
+
+body {
+  background: linear-gradient(to top left, #b4cbff, #fffbda);
+  background-attachment: fixed;
+}
+
+.modal * {
+  font-family: 'neodgm';
+}
+
+.modal .btn {
+  cursor: pointer;
+  border: 1px solid #999999;
+  text-align: center;
+  outline: none;
+  font-weight: 500;
+}
+
+.dimLayer {
+  display: block;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  left: 0;
+  top: 0px;
+  margin: 0;
+  padding: 0;
+  z-index: 9998;
+}
+
+.modal {
+  width: 470px;
+  height: 160px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.modal-section{
+  background: #ffffff;
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 9999;
+}
+
+.menu_msg {
+  font-size: 18px;
+}
+
+.alert_btn {
+  width: 100px;
+  height: 40px;
+  font-size: 14px;
+  border-style: none;
+  background: rgb(196,196,196);
+  box-shadow: 1px 1px black;
+  cursor: pointer;
+}

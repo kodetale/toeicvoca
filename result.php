@@ -7,19 +7,23 @@
 
 <head>
   <link rel="stylesheet" href="./lib/css/style.css">
+  <link rel="stylesheet" href="./lib/css/modal.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="//code.jquery.com/jquery.min.js"></script>
+  <title>TOEIC VOCA - 결과</title>
 </head>
 
 <body>
 
 <?php
-  include './lib/include/top.php'
+  include './lib/include/top.php';
+  include './lib/include/modal.php';
 ?>
 
   <div id="index_wrap" class="wrap">
     <div>
       <div class="main">
-        <h1>DAY<?=$_GET['day']?> 결과</h1> 
+        <h1>DAY <?=$_GET['day']?> 결과</h1> 
         <div class="result"> 40문제 중 
           <span style="color:#38b635;">
 
@@ -43,6 +47,7 @@
   </div>
 
 <script type="text/javascript" src="./lib/js/logout.js"></script>
+<script type="text/javascript" src="./lib/js/alert.js"></script>
 </body>
 
 </html>

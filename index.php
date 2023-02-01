@@ -9,12 +9,16 @@ setcookie("c_num", "", 0, "/");
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./lib/css/style.css">
+  <link rel="stylesheet" href="./lib/css/modal.css">
+  <script src="//code.jquery.com/jquery.min.js"></script>
+  <title>TOEIC VOCA</title>
 </head>
 
 <body>
 
 <?php
-  include './lib/include/top.php'
+  include './lib/include/top.php';
+  include './lib/include/modal.php';
 ?>
 
   <div id="index_wrap" class="wrap">
@@ -41,7 +45,7 @@ setcookie("c_num", "", 0, "/");
             <p><input type="submit" value="퀴즈풀기" class="main_btn"></p>
           </form>
       
-          <div>⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑</div>
+          <div class="index_bar">⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑⭒⭑</div>
           
           <form action="wrong.php" method="GET">
             <input type="hidden" name="day" value=1>
@@ -75,11 +79,13 @@ setcookie("c_num", "", 0, "/");
   </div>
 
 <script type="text/javascript" src="./lib/js/logout.js"></script>
+<script type="text/javascript" src="./lib/js/alert.js"></script>
 <script>
+
 function wrong_check() {
   
   if(<?=$row_num?> == 0) {
-    alert("저장된 오답이 없습니다.");
+    action_popup.alert("저장된 오답이 없습니다.");
     return false;
   }
 }
