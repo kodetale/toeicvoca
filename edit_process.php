@@ -30,6 +30,8 @@
     }
     
     mysqli_query($conn, $sql);
+
+    $_SESSION['username'] = $username;
   ?>
   
   <script>

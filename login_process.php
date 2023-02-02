@@ -38,7 +38,7 @@
     </script>
     
     <?php
-    } else {
+      } else {
     ?>
     
     <script>
@@ -48,19 +48,19 @@
       action_popup.alert("아이디와 비밀번호를 다시 확인해주세요.");
     </script>
     
+    <?php
+        }
+      } else {
+    ?>
+
+    <script>
+      $(".modal_close").on("click", function () {
+        location.href = "login.php";
+      });
+      action_popup.alert("아이디와 비밀번호를 다시 확인해주세요.");
+    </script>
+
     <?php
       }
-    } else {
-    ?>
-
-    <script>
-      $(".modal_close").on("click", function () {
-        location.href = "login.php";
-      });
-      action_popup.alert("아이디와 비밀번호를 다시 확인해주세요.");
-    </script>
-
-    <?php
-    }
     ?>
 </html>

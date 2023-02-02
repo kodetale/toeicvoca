@@ -6,10 +6,7 @@ session_start();
 <html>
 
 <head>
-  <link rel="stylesheet" href="./lib/css/style.css">
-  <link rel="stylesheet" href="./lib/css/modal.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="//code.jquery.com/jquery.min.js"></script>
+  <?php include './lib/include/head.php' ?>
   <title>TOEIC VOCA</title>
 </head>
 
